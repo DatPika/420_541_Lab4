@@ -51,13 +51,13 @@ public class CharacterMovement : MonoBehaviour
         }
         controller.Move(move * Time.deltaTime *((isRunning)?runSpeed:walkSpeed));
     }
-
+    public bool GetGrounded() { return controller.isGrounded; }
     /// Dont Modify -----------------------------------------------
     public void ProcessGravity()
     {
         // Since there is no physics applied on character controller we have this applies to reapply gravity
         
-        if (isGrounded  )
+        if (isGrounded)
         {
             if (playerVelocity.y < 0.0f) // we want to make sure the players stays grounded when on the ground
             {
@@ -70,7 +70,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         controller.Move(playerVelocity * Time.deltaTime);
-        isGrounded = controller.isGrounded;
+        isGrounded  = GetGrounded();
         
     }
 
